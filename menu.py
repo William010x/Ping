@@ -37,7 +37,7 @@ class Menu:
         hover_settings.x, hover_settings.y = 150, 170
         hover_quit.x, hover_quit.y = 150, 190
         
-        #Initialise variable to indicate mouse position at click.
+        #Initialise a variable to indicate mouse position at click.
         mouse_clicked = 0, 0        
         
         #Begin displaying the menu.
@@ -93,12 +93,49 @@ class Menu:
         
     def get_settings(self):
         '''Returns the settings menu when called by user'''
-        self.settings = True
         #TODO: Finish implementation of get_settings
-    
-    def quit_game(self):
-        '''Exits user from the game'''
-        #TODO: Finish implementation of quit_game
+        self.settings = True
+        
+        pygame.init()
+        font_colour = (255, 255, 255)
+        screen = pygame.display.set_mode(self.screen_resolution) 
+        
+        #Create the objects to be displayed.
+        settings_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 20)
+        return_option = settings_font.render("Go Back", False, font_colour)
+        hover_back = return_option.get_rect()
+        hover_back.x, hover_back.y = 150, 150
+        
+        #Initialise a variable to indicate mouse position at click.
+        mouse_clicked = 0, 0
+        
+        #Begin displaying the settings menu.
+        display_settings = self.settings
+        while display_settings:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    display_settings = False
+                    pygame.quit()
+                    sys.exit()
+                if event.type == MOUSEBUTTONDOWN:
+                    mouse_clicked = pygame.mouse.get_pos()                
+            pygame.event.pump()
+            screen.fill((0, 0, 0))
+            #Add objects and their interactions.
+            screen.blit(return_option, (150, 150))
+            if hover_back.collidepoint(pygame.mouse.get_pos()):
+                hover = settings_font.render('>', False, (255, 255, 255))
+                screen.blit(hover, (140, 150))
+            else:
+                hover = settings_font.render('', False, (255, 255, 255))            
+            if hover_back.collidepoint(mouse_clicked):
+                display_settings = False
+                self.settings = False
+                pygame.quit()
+                self.display_menu()
+            #Update screen display
+            pygame.display.update() 
+            pygame.display.flip()
         
 #Uncomment the following for in-class display of the menu.
 #check_menu_display = Menu()
