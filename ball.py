@@ -1,6 +1,7 @@
 from random import randint
 from math import sin, cos, pi
 
+
 class Ball(object):
 	"""docstring for Ball"""
 	#TODO: Finish docstring for Ball class
