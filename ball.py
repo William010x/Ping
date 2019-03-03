@@ -1,3 +1,6 @@
+from random import randint
+from math import sin, cos
+
 class Ball(object):
 	"""docstring for Ball"""
 	#TODO: Finish docstring for Ball class
@@ -9,8 +12,19 @@ class Ball(object):
 		self.radius = radius
 
 	def launch(self, direction):
-		#TODO: lanuch method 
-		pass
+		"""
+		The launch method, when called, picks a random angle and then sets the x and y velocity so it travels in that direction at a combined speed of 10.
+		If the direction variable is set to 1, it will launch towards the left player. If not, it will launch towards the right player.
+		"""
+		angle = randint(10,60)
+		x_vel = 10*cos(angle)
+		y_vel = 10*sin(angle)
+
+		if randint(0,1) == 1:	#50% chance of going up or down
+			y_vel *= -1
+
+		if direction == 1:
+			x_vel *= -1
 
 	def bounce(self, block):
 		#Rough Version (Simple brute forced method, will be improved to be more efficient)
