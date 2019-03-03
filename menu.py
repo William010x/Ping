@@ -27,6 +27,14 @@ class Menu:
         settings_option = menu_font.render("Settings", False, font_colour)
         quit_option = menu_font.render("Quit", False, font_colour)
         
+        #Add hover coordinates.
+        hover_start = start_option.get_rect()
+        hover_settings = settings_option.get_rect()
+        hover_quit = quit_option.get_rect()
+        hover_start.x, hover_start.y = 150, 150
+        hover_settings.x, hover_settings.y = 150, 170
+        hover_quit.x, hover_quit.y = 150, 190
+        
         #Begin displaying the menu.
         menu_display = True
         while menu_display:
@@ -40,8 +48,20 @@ class Menu:
             screen.blit(title, (120, 80))
             screen.blit(start_option, (150, 150))
             screen.blit(settings_option, (150, 170))
-            screen.blit(quit_option, (150, 190))            
-            
+            screen.blit(quit_option, (150, 190))
+            if hover_start.collidepoint(pygame.mouse.get_pos()):
+                hover = menu_font.render('>', False, (255, 255, 255))
+                screen.blit(hover, (140, 150))
+            elif hover_settings.collidepoint(pygame.mouse.get_pos()):
+                hover = menu_font.render('>', False, (255, 255, 255))
+                screen.blit(hover, (140, 170)) 
+            elif hover_quit.collidepoint(pygame.mouse.get_pos()):
+                hover = menu_font.render('>', False, (255, 255, 255))
+                screen.blit(hover, (140, 190))
+            else:
+                hover = menu_font.render('', False, (255, 255, 255))    
+            #Update screen display
+            pygame.display.update()            
             pygame.display.flip()        
         
     def start_game(self):
@@ -58,6 +78,6 @@ class Menu:
         '''Exits user from the game'''
         #TODO: Finish implementation of quit_game
         
-# Uncomment the following for in-class display of the menu.
-# check_menu_display = Menu()
-# check_menu_display.display_menu()
+#Uncomment the following for in-class display of the menu.
+#check_menu_display = Menu()
+#check_menu_display.display_menu()
