@@ -89,7 +89,6 @@ class Menu:
     def start_game(self):
         '''Starts the game when called by user'''
         self.start = True
-        #TODO: Finish implementation of start_game
         
     def get_settings(self):
         '''Returns the settings menu when called by user'''
@@ -133,6 +132,7 @@ class Menu:
                 self.settings = False
                 pygame.quit()
                 self.display_menu()
+                break
             #Update screen display
             pygame.display.update() 
             pygame.display.flip()
