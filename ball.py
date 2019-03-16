@@ -1,5 +1,6 @@
 from random import randint
 from math import sin, cos, pi
+import pygame
 
 
 class Ball(object):
@@ -42,6 +43,7 @@ class Ball(object):
 				self.y_vel = -self.y_vel
 		for y in y_ball_range:
 			if y in y_block_range and (x_pos - 1 in x_block_range or x_pos + radius + 1 in x_block_range):
-				self.x_vel = -self.x_vel		
+				self.x_vel = -self.x_vel
 				
-		
+	def draw(self, screen):
+		pygame.draw.circle(screen, ping.WHITE, (x_pos, y_pos), radius)
