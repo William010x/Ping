@@ -1,19 +1,17 @@
 import random, sys, time, pygame
 from pygame.locals import *
 
+pygame.init()
 WHITE = (255, 255, 255)
-FONT = pygame.font.Font('freesansbold.ttf', 20)
+FONT = pygame.font.Font('freesansbold.ttf', 30)
 
 class ScoreBoard:
     """ScoreBoard class that tracks and updates two players' scores"""
 
-    def __init__(self, display):
+    def __init__(self):
         """Creates a new instance of ScoreBoard"""
         self.p1_score = 0
         self.p2_score = 0
-        self.display = display
-        self.score_display, self.score_rect
-        self.update_board()
         
     def add_point(self, player):
         """Increases player's score by 1 point"""
@@ -41,11 +39,11 @@ class ScoreBoard:
             return "p2"
         return None
     
-    def update_board(self):
+    def update_board(self, display):
         """Displays up-to-date self.p1_score and self.p2_score onto self.display
         """
         self.score_display = FONT.render(str(self.p1_score) + ' : ' + str(self.p2_score), 1, WHITE)
-        self.score_rect = self.score_display.getRect()
-        self.score_rect.topleft = (100, 25) 
-        self.display.blit(self.score_display, self.score_rect)
+        self.score_rect = self.score_display.get_rect()
+        self.score_rect.topleft = (375, 65) 
+        display.blit(self.score_display, self.score_rect)
         
