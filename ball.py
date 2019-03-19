@@ -37,6 +37,8 @@ class Ball(object):
 		# x = x_0 + vt + 1/2 a t^2
 		self.x_pos += self.x_vel * 1
 		self.y_pos += self.y_vel * 1	
+		if self.y_pos - self.radius < 0 or self.y_pos + self.radius > 600:
+			self.y_vel = -self.y_vel
 
 	def bounce(self, block):
 		#Rough Version (Simple brute forced method, will be improved to be more efficient)
