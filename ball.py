@@ -34,16 +34,17 @@ class Ball(object):
 	def bounce(self, block):
 		#Rough Version (Simple brute forced method, will be improved to be more efficient)
 		#Block will be a Wall class or subclass that knows about its size and position (not implemented yet)
-		x_ball_range = range(x_pos - 1, x_pos + radius + 1)
-		y_ball_range = range(y_pos - 1, y_pos + radius + 1)
-		x_board_range = range(block.x_pos, block.x_pos + block.x_size)
-		y_board_range = range(block.y_pos, block.y_pos + block.y_size)
+		x_ball_range = range(self.x_pos - 1, self.x_pos + self.radius + 1)
+		y_ball_range = range(self.y_pos - 1, self.y_pos + self.radius + 1)
+		x_block_range = range(block.get_x_pos(), block.get_x_pos() + 20)
+		y_block_range = range(block.get_y_pos(), block.get_y_pos() + 100)
 		for x in x_ball_range:
-			if x in x_block_range and (y_pos - 1 in y_block_range or y_pos + radius + 1 in y_block_range):
-				self.y_vel = -self.y_vel
-		for y in y_ball_range:
-			if y in y_block_range and (x_pos - 1 in x_block_range or x_pos + radius + 1 in x_block_range):
+			if x in x_block_range and (self.y_pos - 1 in y_block_range or self.y_pos + self.radius + 1 in y_block_range):
 				self.x_vel = -self.x_vel
+		'''for y in y_ball_range:
+			if y in y_block_range and (self.x_pos - 1 in x_block_range or self.x_pos + self.radius + 1 in x_block_range):
+				self.y_vel = -self.y_vel'''
+				
 				
 	def draw(self, screen):
-		pygame.draw.circle(screen, ping.WHITE, (x_pos, y_pos), radius)
+		pygame.draw.circle(screen, (255,255,255), (self.x_pos, self.y_pos), self.radius)
