@@ -18,7 +18,7 @@ class Board:
         self.paddle2.move(speed)
     
     def move_ball(self):
-        self.ball.move()
+        self.ball.move(self.scoreboard)
         return 1
         
     def get_paddle_1(self):

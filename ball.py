@@ -18,10 +18,13 @@ class Ball(object):
 		The launch method, when called, picks a random angle and then sets the x and y velocity so it travels in that direction at a combined speed of 10.
 		If the direction variable is set to 1, it will launch towards the left player. If not, it will launch towards the right player.
 		"""
+		self.x_pos = 400
+		self.y_pos = 300
 		angle = randint(10,60)
 		angle = (angle/180)*pi #convert to rad
 		
-		x_sign, y_sign = 1
+		x_sign = 1
+		y_sign = 1
 		if randint(0,1) == 1:	#50% chance of going up or down
 			y_sign *= -1
 
@@ -31,12 +34,21 @@ class Ball(object):
 		x_vel = 10*cos(angle)*x_sign
 		y_vel = 10*sin(angle)*y_sign
 
-	def move(self):
+	def move(self, scoreboard):
 		#Runs every game tick to move the ball
 		#Using physics big 5 equations where a = 0 and t = 1 as an unknown unit
 		# x = x_0 + vt + 1/2 a t^2
 		self.x_pos += self.x_vel * 1
-		self.y_pos += self.y_vel * 1	
+		self.y_pos += self.y_vel * 1
+		if (self.x_pos - self.radius <= 0):
+			scoreboard.add_point("p2")
+			if (check_for_winner(scoreboard) == None):
+				self.launch(1)
+		elif (self.x_pos - self.radius >= 800):
+			scoreboard.add_point("p1")
+			if (scoreboard.check_for_winner() == None):
+				self.launch(0)
+			
 
 	def bounce(self, block):
 		#Rough Version (Simple brute forced method, will be improved to be more efficient)
