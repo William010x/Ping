@@ -31,6 +31,13 @@ class Ball(object):
 		x_vel = 10*cos(angle)*x_sign
 		y_vel = 10*sin(angle)*y_sign
 
+	def move(self):
+		#Runs every game tick to move the ball
+		#Using physics big 5 equations where a = 0 and t = 1 as an unknown unit
+		# x = x_0 + vt + 1/2 a t^2
+		self.x_pos += self.x_vel * 1
+		self.y_pos += self.y_vel * 1	
+
 	def bounce(self, block):
 		#Rough Version (Simple brute forced method, will be improved to be more efficient)
 		#Block will be a Wall class or subclass that knows about its size and position (not implemented yet)

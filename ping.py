@@ -45,7 +45,9 @@ def game_loop():
             
         board.move_paddle_1(paddle_1_change)
         board.move_paddle_2(paddle_2_change)
-        # board.move_ball()
+        board.move_ball()
+        board.ball.bounce(board.get_paddle_1())
+        board.ball.bounce(board.get_paddle_2())
         display.fill(BLACK)
         board.draw(display)
         
