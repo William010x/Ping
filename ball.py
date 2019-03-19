@@ -48,7 +48,8 @@ class Ball(object):
 			scoreboard.add_point("p1")
 			if (scoreboard.check_for_winner() == None):
 				self.launch(0)
-			
+		if self.y_pos - self.radius < 0 or self.y_pos + self.radius > 600:
+			self.y_vel = -self.y_vel
 
 	def bounce(self, block):
 		#Rough Version (Simple brute forced method, will be improved to be more efficient)
