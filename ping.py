@@ -1,4 +1,5 @@
 import pygame, sys
+from board import Board
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))
@@ -12,7 +13,7 @@ PADDLE_SPEED = 5
 
 def game_loop():
     # Initialize game data
-    # board = Board()
+    board = Board()
     paddle_1_change = 0
     paddle_2_change = 0
     crashed = False
@@ -42,11 +43,11 @@ def game_loop():
                     paddle_1_change = 0
             ########### PADDLE MOVEMENT ###########
             
-        # board.move_paddle_1(paddle_1_change)
-        # board.move_paddle_2(paddle_2_change)
+        board.move_paddle_1(paddle_1_change)
+        board.move_paddle_2(paddle_2_change)
         # board.move_ball()
         display.fill(BLACK)
-        # board.draw()
+        board.draw(display)
         
         pygame.display.update()
         clock.tick(60)

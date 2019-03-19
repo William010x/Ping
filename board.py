@@ -1,9 +1,8 @@
 from paddle import Paddle
-from ball import Ball
 
 class Board:
     def __init__(self):
-        self.ball = Ball()
+        #self.ball = Ball()
         self.paddle1 = Paddle(10, 250)
         self.paddle2 = Paddle(770, 250)
         
@@ -14,7 +13,8 @@ class Board:
         self.paddle2.move(speed)
     
     def move_ball(self):
-        self.ball.move()
+        #self.ball.move()
+        return 1
         
     def get_paddle_1(self):
         return self.paddle1
@@ -22,10 +22,10 @@ class Board:
     def get_paddle_2(self):
         return self.paddle2
 
-    def get_ball():
-        return self.ball
+    #def get_ball():
+        # return self.ball
     
     def draw(self, display):
-        # TODO: Draw all board components
-        return 0
+        self.paddle1.draw(display)
+        self.paddle2.draw(display)
     
