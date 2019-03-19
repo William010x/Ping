@@ -6,7 +6,9 @@ class Paddle:
         self.__y_pos = y_pos
         
     def move(self, speed):
-        self.__y_pos += speed
+        new_pos = self.__y_pos + speed
+        if (not (new_pos < 0 or new_pos > 500)):
+            self.__y_pos += speed
         
     def get_x_pos(self):
         return self.__x_pos
@@ -15,5 +17,6 @@ class Paddle:
         return self.__y_pos
     
     def draw(self, display):
-        pygame.draw.rect(display, (255,255,255), [self.__x_pos, self.__y_pos, 20, 100])
+        pygame.draw.rect(display, (255,255,255), [self.__x_pos, 
+                                                  self.__y_pos, 20, 100])
         
