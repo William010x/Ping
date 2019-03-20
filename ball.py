@@ -44,11 +44,11 @@ class Ball(object):
 		if (self.x_pos - self.radius <= 0):
 			scoreboard.add_point("p2")
 			if (scoreboard.check_for_winner() == None):
-				self.launch(1)
+				self.launch(0)
 		elif (self.x_pos - self.radius >= 800):
 			scoreboard.add_point("p1")
 			if (scoreboard.check_for_winner() == None):
-				self.launch(0)
+				self.launch(1)
 		if self.y_pos - self.radius < 0 or self.y_pos + self.radius > 600:
 			self.y_vel = -self.y_vel
 
