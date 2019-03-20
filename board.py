@@ -27,8 +27,11 @@ class Board:
     def get_paddle_2(self):
         return self.paddle2
 
-    def get_ball():
+    def get_ball(self):
         return self.ball
+    
+    def get_scoreboard(self):
+        return self.scoreboard    
     
     def draw(self, display):
         self.paddle1.draw(display)

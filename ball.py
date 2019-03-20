@@ -44,14 +44,6 @@ class Ball(object):
 		self.x_pos += self.x_vel * 1
 		self.y_pos += self.y_vel * 1
 		self.__reset_fake_points()	
-		if (self.x_pos <= 0):
-			scoreboard.add_point("p2")
-			if (scoreboard.check_for_winner() == None):
-				self.launch(0)
-		elif (self.x_pos >= 800):
-			scoreboard.add_point("p1")
-			if (scoreboard.check_for_winner() == None):
-				self.launch(1)
 		if self.y_pos < 0 or self.y_pos > 600:
 			self.y_vel = -self.y_vel
 
