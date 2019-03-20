@@ -13,7 +13,7 @@ WHITE = (255, 255, 255)
 PADDLE_SPEED = 5
 
 def goal(ball, scoreboard, board):
-    if (ball.x_pos - ball.radius <= 0):
+    if (ball.x_pos <= 0):
         scoreboard.add_point("p2")
         display.fill(BLACK)
         board.draw(display)
@@ -23,7 +23,7 @@ def goal(ball, scoreboard, board):
             display_victory("p2")
         elif (winner == None):
             ball.launch(1)
-    elif (ball.x_pos - ball.radius >= 800):
+    elif (ball.x_pos >= 800):
         scoreboard.add_point("p1")
         display.fill(BLACK)
         board.draw(display)        

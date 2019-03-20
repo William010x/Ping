@@ -48,11 +48,16 @@ class Ball(object):
 			self.y_vel = -self.y_vel
 
 	def bounce(self, block):
-		x_block_range = range(block.get_x_pos(), block.get_x_pos() + 20)
-		y_block_range = range(block.get_y_pos(), block.get_y_pos() + 100)		
+		x_block_min = block.get_x_pos()
+		x_block_max = block.get_x_pos() + 20
+		y_block_min = block.get_y_pos()	
+		y_block_max = block.get_y_pos() + 100
 		for point in self.fake_points:
-			if point[0] in x_block_range and point[1] in y_block_range:
-				self.x_vel = -(self.x_vel+(self.x_vel/abs(self.x_vel))) #self.x_vel/abs(self.x_vel) gives +1 or -1 depending on value of x_vel
+			if point[0] <= x_block_max and \
+			point[0] >= x_block_min and \
+			point[1] <= y_block_max and \
+			point[1] >= y_block_min:
+				self.x_vel = -(self.x_vel+(self.x_vel/(2*abs(self.x_vel)))) #self.x_vel/abs(self.x_vel) gives +1 or -1 depending on value of x_vel
 				break
 				
 	def draw(self, screen):
