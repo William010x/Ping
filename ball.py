@@ -9,14 +9,23 @@ SHAPES = {"square": [[10,10], [-10,10], [-10,-10], [10,-10]], \
                      [10,0], [9,4], [8,6], [7,7], [6,8], [4,9]]}
 
 class Ball(object):
-	"""docstring for Ball"""
-	#TODO: Finish docstring for Ball class
-	def __init__(self, x_pos, y_pos, x_vel, y_vel, shape):
+	"""
+	Ball constructor:
+	parameters:
+	x_pos / y_pos: center position for the ball (cartesian point)
+	x_vel / y_vel: speed values for the ball (separated in components)
+	shape: a string value which reads the dictionary SHAPES
+	size: constant int multiplier value for the ball's size
+	"""
+	def __init__(self, x_pos, y_pos, x_vel, y_vel, shape, size):
 		self.x_pos = x_pos
 		self.y_pos = y_pos
 		self.x_vel = x_vel
 		self.y_vel = y_vel
-		self.points = points
+		self.points = SHAPES[shape]
+		for p in self.points:
+			p[0] *= size
+			p[1] *= size
 		self.__reset_fake_points()
 		self.launch(1)
 
