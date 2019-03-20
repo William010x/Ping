@@ -5,7 +5,7 @@ from ball import Ball
 
 class Board:
     def __init__(self):
-        self.ball = Ball(400, 300, 3, 0, 10)
+        self.ball = Ball(400, 300, 10, 0, 10)
         #self.ball.launch()
         self.paddle1 = Paddle(10, 250)
         self.paddle2 = Paddle(770, 250)
@@ -27,8 +27,11 @@ class Board:
     def get_paddle_2(self):
         return self.paddle2
 
-    def get_ball():
+    def get_ball(self):
         return self.ball
+    
+    def get_scoreboard(self):
+        return self.scoreboard    
     
     def draw(self, display):
         self.paddle1.draw(display)
