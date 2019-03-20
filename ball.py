@@ -6,12 +6,14 @@ import pygame
 class Ball(object):
 	"""docstring for Ball"""
 	#TODO: Finish docstring for Ball class
-	def __init__(self, x_pos, y_pos, x_vel, y_vel, radius):
+	def __init__(self, x_pos, y_pos, x_vel, y_vel, points):
 		self.x_pos = x_pos
 		self.y_pos = y_pos
 		self.x_vel = x_vel
 		self.y_vel = y_vel
-		self.radius = radius
+		self.points = points
+		self.__reset_fake_points()
+			
 
 	def launch(self, direction):
 		"""
@@ -20,6 +22,7 @@ class Ball(object):
 		"""
 		self.x_pos = 400
 		self.y_pos = 300
+		self.__reset_fake_points()
 		angle = randint(10,60)
 		angle = (angle/180)*pi #convert to rad
 		
@@ -40,31 +43,34 @@ class Ball(object):
 		# x = x_0 + vt + 1/2 a t^2
 		self.x_pos += self.x_vel * 1
 		self.y_pos += self.y_vel * 1
-		if (self.x_pos - self.radius <= 0):
+		self.__reset_fake_points()	
+		if (self.x_pos <= 0):
 			scoreboard.add_point("p2")
 			if (check_for_winner(scoreboard) == None):
 				self.launch(1)
-		elif (self.x_pos - self.radius >= 800):
+		elif (self.x_pos >= 800):
 			scoreboard.add_point("p1")
 			if (scoreboard.check_for_winner() == None):
 				self.launch(0)
-		if self.y_pos - self.radius < 0 or self.y_pos + self.radius > 600:
+		if self.y_pos < 0 or self.y_pos > 600:
 			self.y_vel = -self.y_vel
 
 	def bounce(self, block):
-		#Rough Version (Simple brute forced method, will be improved to be more efficient)
-		#Block will be a Wall class or subclass that knows about its size and position (not implemented yet)
-		x_ball_range = range(self.x_pos - 1, self.x_pos + self.radius + 1)
-		y_ball_range = range(self.y_pos - 1, self.y_pos + self.radius + 1)
 		x_block_range = range(block.get_x_pos(), block.get_x_pos() + 20)
-		y_block_range = range(block.get_y_pos(), block.get_y_pos() + 100)
-		for x in x_ball_range:
-			if x in x_block_range and (self.y_pos - 1 in y_block_range or self.y_pos + self.radius + 1 in y_block_range):
+		y_block_range = range(block.get_y_pos(), block.get_y_pos() + 100)		
+		for point in self.fake_points:
+			if point[0] in x_block_range and point[1] in y_block_range:
 				self.x_vel = -self.x_vel
-		'''for y in y_ball_range:
-			if y in y_block_range and (self.x_pos - 1 in x_block_range or self.x_pos + self.radius + 1 in x_block_range):
-				self.y_vel = -self.y_vel'''
-				
+				break
 				
 	def draw(self, screen):
-		pygame.draw.circle(screen, (255,255,255), (self.x_pos, self.y_pos), self.radius)
+		#pygame.draw.circle(screen, (255,255,255), (self.x_pos, self.y_pos), self.radius)
+		pygame.draw.polygon(screen, (255,255,255), self.fake_points)
+		
+	def __reset_fake_points(self):
+		self.fake_points = []
+		for point in self.points:
+			f_point = point[:]
+			f_point[0] += self.x_pos
+			f_point[1] += self.y_pos
+			self.fake_points.append(f_point)		
