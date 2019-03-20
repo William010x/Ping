@@ -5,7 +5,7 @@ from ball import Ball
 
 class Board:
     def __init__(self):
-        self.ball = Ball(400, 300, 3, 4, [[10,10],[-10,10],[-10,-10],[10,-10]])
+        self.ball = Ball(400, 300, 3, 4, "circle")
         #self.ball.launch()
         self.paddle1 = Paddle(10, 250)
         self.paddle2 = Paddle(770, 250)

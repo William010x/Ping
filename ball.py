@@ -2,11 +2,16 @@ from random import randint
 from math import sin, cos, pi
 import pygame
 
+SHAPES = {"square": [[10,10], [-10,10], [-10,-10], [10,-10]], \
+          "circle": [[0,10], [-4,9], [-6,8], [-7,7], [-8,6], [-9,4], \
+                     [-10,0], [-9,-4], [-8,-6], [-7,-7], [-6,-8], [-4,-9], \
+                     [0,-10], [4,-9], [6,-8], [7,-7], [8,-6], [9,-4], \
+                     [10,0], [9,4], [8,6], [7,7], [6,8], [4,9]]}
 
 class Ball(object):
 	"""docstring for Ball"""
 	#TODO: Finish docstring for Ball class
-	def __init__(self, x_pos, y_pos, x_vel, y_vel, points):
+	def __init__(self, x_pos, y_pos, x_vel, y_vel, shape):
 		self.x_pos = x_pos
 		self.y_pos = y_pos
 		self.x_vel = x_vel
