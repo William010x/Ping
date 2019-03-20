@@ -13,7 +13,7 @@ class Ball(object):
 		self.y_vel = y_vel
 		self.points = points
 		self.__reset_fake_points()
-			
+		self.launch(1)
 
 	def launch(self, direction):
 		"""
@@ -25,7 +25,7 @@ class Ball(object):
 		self.__reset_fake_points()
 		angle = randint(10,60)
 		angle = (angle/180)*pi #convert to rad
-		
+
 		x_sign = 1
 		y_sign = 1
 		if randint(0,1) == 1:	#50% chance of going up or down
@@ -34,8 +34,8 @@ class Ball(object):
 		if direction == 1:
 			x_sign *= -1
 
-		x_vel = 10*cos(angle)*x_sign
-		y_vel = 10*sin(angle)*y_sign
+		self.x_vel = int(5*cos(angle)*x_sign)
+		self.y_vel = int(5*sin(angle)*y_sign)
 
 	def move(self, scoreboard):
 		#Runs every game tick to move the ball
@@ -46,12 +46,12 @@ class Ball(object):
 		self.__reset_fake_points()	
 		if (self.x_pos <= 0):
 			scoreboard.add_point("p2")
-			if (check_for_winner(scoreboard) == None):
-				self.launch(1)
+			if (scoreboard.check_for_winner() == None):
+				self.launch(0)
 		elif (self.x_pos >= 800):
 			scoreboard.add_point("p1")
 			if (scoreboard.check_for_winner() == None):
-				self.launch(0)
+				self.launch(1)
 		if self.y_pos < 0 or self.y_pos > 600:
 			self.y_vel = -self.y_vel
 
