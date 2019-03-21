@@ -1,5 +1,11 @@
 import pygame, sys, time
 from board import Board
+from menu import Menu
+
+#Initialize Menu Object
+menu = Menu()
+menu.display_menu()
+#End of Menu Object
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))

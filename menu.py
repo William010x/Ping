@@ -76,8 +76,6 @@ class Menu:
                 pygame.quit()
                 sys.exit()
             elif hover_settings.collidepoint(mouse_clicked):
-                menu_display = False
-                pygame.quit()
                 self.get_settings()
                 break
             elif hover_start.collidepoint(mouse_clicked):
@@ -133,7 +131,6 @@ class Menu:
             if hover_back.collidepoint(mouse_clicked):
                 display_settings = False
                 self.settings = False
-                pygame.quit()
                 self.display_menu()
                 break
             #Update screen display
