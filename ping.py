@@ -20,19 +20,23 @@ WHITE = (255, 255, 255)
 
 PADDLE_SPEED = 5
 
-def goal(ball, scoreboard, board):
-    if (ball.x_pos <= 0):
-        scoreboard.add_point("p2")
+def goal(board):
+    if (board.get_ball().x_pos <= 0):
+        board.get_scoreboard().add_point("p2")
+        board.get_paddle_1().reset()
+        board.get_paddle_2().reset()
         display.fill(BLACK)
         board.draw(display)
         pygame.display.update()
-        winner = scoreboard.check_for_winner()
+        winner = board.get_scoreboard().check_for_winner()
         if (winner == "p2"):
             display_victory("p2")
         elif (winner == None):
-            ball.launch(1)
-    elif (ball.x_pos >= 800):
-        scoreboard.add_point("p1")
+            board.get_ball().launch(1)
+    elif (board.get_ball().x_pos >= 800):
+        board.get_scoreboard().add_point("p1")
+        board.get_paddle_1().reset()
+        board.get_paddle_2().reset()        
         display.fill(BLACK)
         board.draw(display)        
         pygame.display.update()
@@ -40,7 +44,7 @@ def goal(ball, scoreboard, board):
         if (winner == "p1"):
             display_victory("p1")
         elif (winner == None):
-            ball.launch(0)  
+            board.get_ball().launch(0)  
 
 def display_victory(winner):
     text = winner + " won "
@@ -48,9 +52,10 @@ def display_victory(winner):
     text_rect = text_surf.get_rect()
     text_rect.topleft = (250, 200)
     display.blit(text_surf, text_rect)   
-    print("display victory called")
+    #print("display victory called")
     pygame.display.update()
     time.sleep(5)
+    menu.display_menu()
     game_loop()
     
 def game_loop():
@@ -88,7 +93,7 @@ def game_loop():
         board.move_paddle_1(paddle_1_change)
         board.move_paddle_2(paddle_2_change)
         board.move_ball()
-        goal(board.get_ball(), board.get_scoreboard(), board)
+        goal(board)
         board.ball.bounce(board.get_paddle_1())
         board.ball.bounce(board.get_paddle_2())
         display.fill(BLACK)

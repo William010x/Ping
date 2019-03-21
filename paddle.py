@@ -5,6 +5,8 @@ class Paddle:
     def __init__(self, x_pos, y_pos):
         self.__x_pos = x_pos
         self.__y_pos = y_pos
+        self.__x_orig = x_pos
+        self.__y_orig = y_pos
         self.r = randint(0, 255)
         self.g = randint(0, 255)
         self.b = randint(0, 255)
@@ -28,3 +30,6 @@ class Paddle:
         pygame.draw.rect(display, (self.r,self.g,self.b), [self.__x_pos, 
                                                   self.__y_pos, 20, 100])
         
+    def reset(self):
+        self.__x_pos = self.__x_orig
+        self.__y_pos = self.__y_orig

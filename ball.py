@@ -63,9 +63,11 @@ class Ball(object):
 		# x = x_0 + vt + 1/2 a t^2
 		self.x_pos += self.x_vel * 1
 		self.y_pos += self.y_vel * 1
-		self.__reset_fake_points()	
-		if self.y_pos < 0 or self.y_pos > 600:
-			self.y_vel = -self.y_vel
+		self.__reset_fake_points()
+		for point in self.fake_points:
+			if point[1] < 0 or point[1] > 600:
+				self.y_vel = -self.y_vel
+				break
 
 	def bounce(self, block):
 		x_block_min = block.get_x_pos()
