@@ -6,7 +6,8 @@ from pygame.locals import *
 class Menu:
     '''Menu class that creates a menu and lists interactive menu options'''
     
-    screen_resolution = (400, 300)
+    screen_resolution = (800, 600)
+    background = pygame.image.load("resources/images/space.png")
     
     def __init__(self):
         '''Initialises an new instance of Menu'''
@@ -22,8 +23,8 @@ class Menu:
         screen = pygame.display.set_mode(self.screen_resolution)
         
         #Create the text to be displayed with the desired game font.
-        title_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 60)
-        menu_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 20)
+        title_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 80)
+        menu_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 30)
         title = title_font.render("PING!", False, font_colour)
         start_option = menu_font.render("Start", False, font_colour)
         settings_option = menu_font.render("Settings", False, font_colour)
@@ -33,9 +34,9 @@ class Menu:
         hover_start = start_option.get_rect()
         hover_settings = settings_option.get_rect()
         hover_quit = quit_option.get_rect()
-        hover_start.x, hover_start.y = 150, 150
-        hover_settings.x, hover_settings.y = 150, 170
-        hover_quit.x, hover_quit.y = 150, 190
+        hover_start.x, hover_start.y = 300, 270
+        hover_settings.x, hover_settings.y = 300, 290
+        hover_quit.x, hover_quit.y = 300, 320
         
         #Initialise a variable to indicate mouse position at click.
         mouse_clicked = 0, 0        
@@ -52,20 +53,21 @@ class Menu:
                     mouse_clicked = pygame.mouse.get_pos()                 
             pygame.event.pump()
             screen.fill((0, 0, 0))
-            screen.blit(title, (120, 80))
-            screen.blit(start_option, (150, 150))
-            screen.blit(settings_option, (150, 170))
-            screen.blit(quit_option, (150, 190))
+            screen.blit(self.background, (0, 0))
+            screen.blit(title, (300, 180))
+            screen.blit(start_option, (320, 260))
+            screen.blit(settings_option, (320, 290))
+            screen.blit(quit_option, (320, 320))
             #Implement changes to display on hover.
             if hover_start.collidepoint(pygame.mouse.get_pos()):
                 hover = menu_font.render('>', False, (255, 255, 255))
-                screen.blit(hover, (140, 150))
+                screen.blit(hover, (300, 260))
             elif hover_settings.collidepoint(pygame.mouse.get_pos()):
                 hover = menu_font.render('>', False, (255, 255, 255))
-                screen.blit(hover, (140, 170)) 
+                screen.blit(hover, (300, 290)) 
             elif hover_quit.collidepoint(pygame.mouse.get_pos()):
                 hover = menu_font.render('>', False, (255, 255, 255))
-                screen.blit(hover, (140, 190))
+                screen.blit(hover, (300, 320))
             else:
                 hover = menu_font.render('', False, (255, 255, 255))
             #Check for clicks.
@@ -100,10 +102,10 @@ class Menu:
         screen = pygame.display.set_mode(self.screen_resolution) 
         
         #Create the objects to be displayed.
-        settings_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 20)
+        settings_font = pygame.font.Font("resources/fonts/3Dventure.ttf", 30)
         return_option = settings_font.render("Go Back", False, font_colour)
         hover_back = return_option.get_rect()
-        hover_back.x, hover_back.y = 150, 150
+        hover_back.x, hover_back.y = 300, 250
         
         #Initialise a variable to indicate mouse position at click.
         mouse_clicked = 0, 0
@@ -120,11 +122,12 @@ class Menu:
                     mouse_clicked = pygame.mouse.get_pos()                
             pygame.event.pump()
             screen.fill((0, 0, 0))
+            screen.blit(self.background, (0, 0))
             #Add objects and their interactions.
-            screen.blit(return_option, (150, 150))
+            screen.blit(return_option, (340, 250))
             if hover_back.collidepoint(pygame.mouse.get_pos()):
                 hover = settings_font.render('>', False, (255, 255, 255))
-                screen.blit(hover, (140, 150))
+                screen.blit(hover, (320, 250))
             else:
                 hover = settings_font.render('', False, (255, 255, 255))            
             if hover_back.collidepoint(mouse_clicked):
