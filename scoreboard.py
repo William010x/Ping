@@ -3,7 +3,7 @@ from pygame.locals import *
 
 pygame.init()
 WHITE = (255, 255, 255)
-FONT = pygame.font.Font('freesansbold.ttf', 30)
+FONT = pygame.font.Font("resources/fonts/3Dventure.ttf", 30)
 
 class ScoreBoard:
     """ScoreBoard class that tracks and updates two players' scores"""

@@ -8,6 +8,9 @@ class Menu:
     
     screen_resolution = (800, 600)
     background = pygame.image.load("resources/images/space.png")
+    icon = pygame.image.load("resources/images/icon.png")
+    pygame.display.set_icon(icon)
+    pygame.display.set_caption('Ping!')    
     
     def __init__(self):
         '''Initialises an new instance of Menu'''

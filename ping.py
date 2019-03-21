@@ -9,9 +9,11 @@ menu.display_menu()
 
 pygame.init()
 display = pygame.display.set_mode((800, 600))
+icon = pygame.image.load("resources/images/icon.png")
 pygame.display.set_caption('Ping!')
+pygame.display.set_icon(icon)
 clock = pygame.time.Clock()
-FONT = pygame.font.Font('freesansbold.ttf', 100)
+FONT = pygame.font.Font("resources/fonts/3Dventure.ttf", 100)
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
