@@ -6,7 +6,10 @@ SHAPES = {"square": [[10,10], [-10,10], [-10,-10], [10,-10]], \
           "circle": [[0,10], [-4,9], [-6,8], [-7,7], [-8,6], [-9,4], \
                      [-10,0], [-9,-4], [-8,-6], [-7,-7], [-6,-8], [-4,-9], \
                      [0,-10], [4,-9], [6,-8], [7,-7], [8,-6], [9,-4], \
-                     [10,0], [9,4], [8,6], [7,7], [6,8], [4,9]]}
+                     [10,0], [9,4], [8,6], [7,7], [6,8], [4,9]],
+          "star": [[0,-12], [3, -4], [11, -4], [5, 2], [7, 10], [0,5], \
+                   [-7, 10], [-5, 2], [-11, -4], [-3, -4]],
+          "triangle": [[0,-8], [-10,8], [10,8]]}
 
 class Ball(object):
 	"""
@@ -22,7 +25,10 @@ class Ball(object):
 		self.y_pos = y_pos
 		self.x_vel = x_vel
 		self.y_vel = y_vel
-		self.points = SHAPES[shape]
+		if (shape == "random"):
+			self.points = list(SHAPES.values())[randint(0, len(SHAPES) - 1)]
+		else:
+		        self.points = SHAPES[shape]
 		for p in self.points:
 			p[0] *= size
 			p[1] *= size
