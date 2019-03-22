@@ -21,6 +21,7 @@ WHITE = (255, 255, 255)
 PADDLE_SPEED = 5
 
 def goal(board):
+    '''Checks if ball scored and updates points accordingly'''
     if (board.get_ball().x_pos <= 0):
         board.get_scoreboard().add_point("p2")
         board.get_paddle_1().reset()
@@ -47,6 +48,7 @@ def goal(board):
             board.get_ball().launch(0)  
 
 def display_victory(winner):
+    '''Shows which player won and sends players back to main menu'''
     text = winner + " won "
     text_surf = FONT.render(text, True, WHITE)
     text_rect = text_surf.get_rect()
@@ -59,6 +61,7 @@ def display_victory(winner):
     game_loop()
     
 def game_loop():
+    '''Starts the actual game and re-intializes all game values'''
     # Initialize game data
     board = Board()
     paddle_1_change = 0

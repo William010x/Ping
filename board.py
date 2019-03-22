@@ -2,13 +2,15 @@ from paddle import Paddle
 from scoreboard import ScoreBoard
 from ball import Ball
 
+PADDLE_LENGTH = 20
+BOARD_LENGTH = 800
 
 class Board:
     def __init__(self):
         self.ball = Ball(400, 300, 3, 4, "random", 1)
         #self.ball.launch()
         self.paddle1 = Paddle(10, 250)
-        self.paddle2 = Paddle(770, 250)
+        self.paddle2 = Paddle(BOARD_LENGTH - 10 - PADDLE_LENGTH, 250)
         self.scoreboard = ScoreBoard()
         
     def move_paddle_1(self, speed):
