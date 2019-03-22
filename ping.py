@@ -41,7 +41,7 @@ def goal(board):
         display.fill(BLACK)
         board.draw(display)        
         pygame.display.update()
-        winner = scoreboard.check_for_winner()
+        winner = board.get_scoreboard().check_for_winner()
         if (winner == "p1"):
             display_victory("p1")
         elif (winner == None):
